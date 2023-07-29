@@ -27,4 +27,4 @@ To restore a backup run the following command.
 ```sh
 restore XXXX-YY-ZZ.tar
 ```
-This will do a full restore.
+This will do a full `$HOME` restoration.
