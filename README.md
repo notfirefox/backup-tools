@@ -24,11 +24,10 @@ and `ZZ` are defined as follows:
 It is advised to store this file at a safe location.
 
 ### Restore
-To restore a backup run the following command.
+To do a full `$HOME` restore run the following command.
 ```sh
 restore XXXX-YY-ZZ.tar
 ```
-This will do a full `$HOME` restoration. 
 
 To only restore the `$HOME/Downloads` folder issue the 
 following command.
