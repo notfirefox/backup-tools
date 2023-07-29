@@ -19,7 +19,7 @@ and `ZZ` are defined as follows:
 - `YY` the current month
 - `ZZ` the current day
 
-Move this file to a safe location.
+It is advised to store this file at a safe location.
 
 ### Restore
 To restore a backup run the following command.
