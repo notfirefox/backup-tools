@@ -20,5 +20,5 @@ fi
 
 (
   cd "$HOME" || exit
-  tar -xvmf "$1"
+  tar -xvf "$1"
 )
