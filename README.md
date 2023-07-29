@@ -24,7 +24,7 @@ and `ZZ` are defined as follows:
 It is advised to store this file at a safe location.
 
 ### Restore
-To do a full `$HOME` restore run the following command.
+To do a full `$HOME` restore run `dump` without a pattern.
 ```sh
 restore XXXX-YY-ZZ.tar
 ```
