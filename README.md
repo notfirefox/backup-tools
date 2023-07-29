@@ -1,5 +1,10 @@
 # Backup Tools
-Simple backup tools
+Backup Tools consists of two scripts: `backup` and `restore`.
+Both are designed to handle backups of the `$HOME` directory.
+`backup` will dump everything into a single tar file that can
+then be stored somewhere else. `restore` takes an existing
+tar file and restores everything into the `$HOME` folder.
+Partial restoration is planned.
 
 ## Usage
 
