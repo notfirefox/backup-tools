@@ -28,8 +28,9 @@ To restore a backup run the following command.
 ```sh
 restore XXXX-YY-ZZ.tar
 ```
-This will do a full `$HOME` restoration. To onlz
-restore the `$HOME/Downloads` folder issue the 
+This will do a full `$HOME` restoration. 
+
+To only restore the `$HOME/Downloads` folder issue the 
 following command.
 ```sh
 restore XXXX-YY-ZZ.tar ./Downloads
