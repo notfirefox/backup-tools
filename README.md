@@ -3,8 +3,9 @@ Backup Tools consists of two scripts: `dump` and `restore`.
 Both are designed to handle backups of the `$HOME` directory.
 `dump` will dump everything into a single tar file that can
 then be stored somewhere else. `restore` takes an existing
-tar file and restores everything into the `$HOME` folder.
-Partial restoration is planned.
+tar file and restores everything into the `$HOME` folder if
+no pattern is provided. Using a pattern it is possible to do
+partial restorations.
 
 ## Usage
 
@@ -27,4 +28,9 @@ To restore a backup run the following command.
 ```sh
 restore XXXX-YY-ZZ.tar
 ```
-This will do a full `$HOME` restoration.
+This will do a full `$HOME` restoration. To onlz
+restore the `$HOME/Downloads` folder issue the 
+following command.
+```sh
+restore XXXX-YY-ZZ.tar ./Downloads
+```
