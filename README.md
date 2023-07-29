@@ -1,7 +1,7 @@
 # Backup Tools
-Backup Tools consists of two scripts: `backup` and `restore`.
+Backup Tools consists of two scripts: `dump` and `restore`.
 Both are designed to handle backups of the `$HOME` directory.
-`backup` will dump everything into a single tar file that can
+`dump` will dump everything into a single tar file that can
 then be stored somewhere else. `restore` takes an existing
 tar file and restores everything into the `$HOME` folder.
 Partial restoration is planned.
@@ -11,7 +11,7 @@ Partial restoration is planned.
 ### Backup
 To create a backup run the following command.
 ```sh
-backup
+dump
 ```
 This will create a file `XXXX-YY-ZZ.tar`, where
 - `XXXX` is the current year
