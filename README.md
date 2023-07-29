@@ -5,7 +5,7 @@ Both are designed to handle backups of the `$HOME` directory.
 then be stored somewhere else. `restore` takes an existing
 tar file and restores everything into the `$HOME` folder if
 no pattern is provided. Using a pattern it is possible to do
-partial restorations.
+a partial restore.
 
 ## Usage
 
