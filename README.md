@@ -13,10 +13,11 @@ To create a backup run the following command.
 ```sh
 dump
 ```
-This will create a file `XXXX-YY-ZZ.tar`, where
-- `XXXX` is the current year
+This will create a file `XXXX-YY-ZZ.tar`, where `XXXX`, `YY`
+and `ZZ` are defined as follows:
+- `XXXX` the current year
 - `YY` the current month
-- and `ZZ` the current day.
+- `ZZ` the current day
 
 Move this file to a safe location.
 
