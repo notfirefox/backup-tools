@@ -20,6 +20,9 @@ and `ZZ` are defined as follows:
 - `ZZ` the current day
 
 It is advised to store this file at a safe location.
+**WARNING**: `dump` as of now does **not** back up the following files:
+- Hidden Files
+- `$HOME/Videos/`
 
 ### Restore
 To restore a backup run the following command.
@@ -27,8 +30,3 @@ To restore a backup run the following command.
 restore XXXX-YY-ZZ.tar
 ```
 This will do a full restore.
-
-## Warning
-`dump` as of now does **not** back up the following files:
-- Hidden Files
-- `$HOME/Videos/`
