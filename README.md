@@ -9,7 +9,8 @@ Partial restoration is planned.
 ## Usage
 
 ### Backup
-To create a backup run the following command.
+To create a backup run the following command. Please note
+that as of now `dump` does not update hidden files or `$HOME/Videos`.
 ```sh
 dump
 ```
@@ -20,10 +21,6 @@ and `ZZ` are defined as follows:
 - `ZZ` the current day
 
 It is advised to store this file at a safe location.
-
-**WARNING**: `dump` as of now does **not** back up the following files:
-- Hidden Files
-- `$HOME/Videos/`
 
 ### Restore
 To restore a backup run the following command.
