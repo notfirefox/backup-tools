@@ -15,11 +15,11 @@ that `dump` does not backup hidden files/folders or `$HOME/Videos`.
 ```sh
 dump
 ```
-This will create a file `XXXX-YY-ZZ.tar`, where `XXXX`, `YY`
-and `ZZ` are defined as follows:
-- `XXXX` the current year
-- `YY` the current month
-- `ZZ` the current day
+This will create a file `YYYY-MM-DD.tar`, where `YYYY`, `MM`
+and `DD` are defined as follows:
+- `YYYY` the current year
+- `MM` the current month
+- `DD` the current day
 
 It is advised to store this file at a safe location.
 
