@@ -3,7 +3,7 @@ Simple backup tools
 
 ## Usage
 
-### Back Up
+### Backup
 To create a backup run the following command.
 ```sh
 backup
