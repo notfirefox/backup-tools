@@ -6,7 +6,7 @@ Simple backup tools
 ### Backing Up
 To create a backup run the following command.
 ```sh
-create-backup
+backup
 ```
 This will create a file `XXXX-YY-ZZ.tar`, where
 - `XXXX` is the current year
@@ -18,6 +18,6 @@ Move this file to a safe location.
 ### Restoring
 To restore a backup run the following command.
 ```sh
-restore-backup XXXX-YY-ZZ.tar
+restore XXXX-YY-ZZ.tar
 ```
 This will do a full restore.
