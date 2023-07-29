@@ -27,3 +27,8 @@ To restore a backup run the following command.
 restore XXXX-YY-ZZ.tar
 ```
 This will do a full restore.
+
+## Warning
+`dump` as of now does **not** back up the following files:
+- Hidden Files
+- `$HOME/Videos/`
