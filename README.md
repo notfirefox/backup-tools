@@ -11,7 +11,7 @@ a partial restore.
 
 ### Backup
 To create a backup run the following command. Please note
-that `dump` does not backup hidden files/folders or `$HOME/Videos`.
+that `dump` does not backup hidden files.
 ```sh
 dump
 ```
