@@ -11,7 +11,7 @@ a partial restore.
 
 ### Backup
 To create a backup run the following command. Please note
-that `dump` does not backup hidden files.
+hidden files will not be backed up.
 ```sh
 dump
 ```
