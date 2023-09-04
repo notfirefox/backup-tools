@@ -1,13 +1,6 @@
 # Backup Tools
 
 ## Install restic
-
-### Arch Linux
-```sh
-sudo pacman -S restic
-```
-
-### Fedora
 ```sh
 sudo dnf install restic
 ```
