@@ -48,6 +48,8 @@ chown root /usr/local/bin/restic-offsite
 ```
 
 ## Create a backup service
+
+### Service
 Put the following into `/etc/systemd/user/restic-backup.service`:
 ```
 [Unit]
@@ -55,7 +57,21 @@ Description=Restic Backup Service
 
 [Service]
 Type=oneshot
-ExecStart=restic-offsite backup "/home/<user>" --exclude "/home/<user>/"'/.*' --verbose
+ExecStart=restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
 ExecStartPost=restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
 ```
 Change `<user>` accordingly.
+
+### Timer
+Put the following into `/etc/systemd/system/restic-backup.timer`:
+```
+[Unit]
+Description=Daily Restic Backups
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
