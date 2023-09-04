@@ -50,10 +50,9 @@ chown root /usr/local/bin/restic-offsite
 ## Create a backup service
 Download the systemd unit file:
 ```sh
-curl "https://raw.githubusercontent.com/notfirefox/backup-tools/rewrite/etc/systemd/user/restic-backup.service" -o /etc/systemd/user/restic-backup.service
+curl -o /etc/systemd/user/restic-backup.service "https://raw.githubusercontent.com/notfirefox/backup-tools/rewrite/etc/systemd/user/restic-backup.service" 
 ```
 
 Download the systemd timer file:
 ```sh
-curl "https://github.com/notfirefox/backup-tools/raw/rewrite/etc/systemd/user/restic-backup.timer" -o /etc/systemd/user/restic-backup.timer
-```
+curl -o /etc/systemd/user/restic-backup.timer "https://github.com/notfirefox/backup-tools/raw/rewrite/etc/systemd/user/restic-backup.timer" ```
