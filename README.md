@@ -1,6 +1,6 @@
 # Backup Tools
 Backup Tools is a system providing
-encrypted offsite backups using [restic](https://restic.net/).
+encrypted backups using [restic](https://restic.net/).
 
 ## Install restic
 Install `restic` on your system. Instructions
