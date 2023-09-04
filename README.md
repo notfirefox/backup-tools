@@ -1,36 +1,110 @@
 # Backup Tools
-Backup Tools consists of two scripts: `dump` and `restore`.
-Both are designed to handle backups of the `$HOME` directory.
-`dump` will dump everything into a single tar file that can
-then be stored somewhere else. `restore` takes an existing
-tar file and restores everything into the `$HOME` folder if
-no pattern is provided. Using a pattern it is possible to do
-a partial restore.
+Backup Tools is a system providing
+encrypted backups using [restic](https://restic.net/).
 
-## Usage
+## Install restic
+Install `restic` on your system. Instructions
+for select systems are provided below. For 
+other systems follow the instructions of the 
+official documentation linked 
+[here](https://restic.readthedocs.io/en/stable/020_installation.html).
 
-### Backup
-To create a backup run the following command. Please note
-that hidden files will not be backed up.
+### Arch Linux
 ```sh
-dump
-```
-This will create a file `YYYY-MM-DD.tar`, where `YYYY`, `MM`
-and `DD` are defined as follows:
-- `YYYY` the current year
-- `MM` the current month
-- `DD` the current day
-
-It is advised to store this file at a safe location.
-
-### Restore
-To do a full `$HOME` restore run `dump` without a pattern.
-```sh
-restore XXXX-YY-ZZ.tar
+pacman -S restic
 ```
 
-To only restore the `$HOME/Downloads` folder issue the 
-following command.
+### Debian
 ```sh
-restore XXXX-YY-ZZ.tar ./Downloads
+apt-get install restic
+```
+
+### Fedora
+```sh
+dnf install restic
+```
+
+## Create a proxy script
+Create a file called `/usr/local/bin/restic-offsite` and 
+put the following into it:
+```sh
+#!/bin/sh
+
+export RESTIC_REPOSITORY="<repository>"
+export RESTIC_PASSWORD="<password>"
+
+exec restic "$@"
+```
+Change `<repository>` and `<password>` accordingly.
+
+Change the permissions of the file:
+```sh
+chmod 700 /usr/local/bin/restic-offsite
+```
+
+Change the ownership of the file:
+```sh
+chown root /usr/local/bin/restic-offsite
+```
+
+## Create a backup service
+Now we want to create a systemd system service
+to automate the backup process. Documentation
+on writing unit files can be found
+[here](https://wiki.archlinux.org/title/Systemd#Writing_unit_files).
+
+### Service
+Put the following into `/etc/systemd/user/restic-backup.service`:
+```
+[Unit]
+Description=Restic Backup Service
+
+[Service]
+Type=oneshot
+ExecStart=restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
+ExecStartPost=restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+```
+Change `<user>` accordingly.
+
+### Timer
+Put the following into `/etc/systemd/system/restic-backup.timer`:
+```
+[Unit]
+Description=Daily Restic Backups
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+
+## Create a prune service
+In order to clean up ununsed data in the restic repository
+we need a separate system service that runs less regularly.
+
+### Service
+Put the following into `/etc/systemd/user/restic-prune.service`:
+```
+[Unit]
+Description=Restic Prune service
+
+[Service]
+Type=oneshot
+ExecStart=restic-offsite prune
+```
+
+### Timer
+Put the following into `/etc/systemd/system/restic-prune.timer`:
+```
+[Unit]
+Description=Weekly Restic Cleanup
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
 ```
