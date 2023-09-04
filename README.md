@@ -1,5 +1,12 @@
 # Backup Tools
 
+## Install restic
+
+### Fedora
+```
+sudo dnf install restic
+```
+
 ## Create a proxy script
 Create a file called `/usr/local/bin/restic-offsite` and 
 put the following into it:
