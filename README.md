@@ -2,9 +2,10 @@
 
 ## Install restic
 Install `restic` on your system. Instructions
-for Arch Linux, Debian and Fedora are provided
-below. For other systems follow the official 
-[documentation](https://restic.readthedocs.io/en/stable/020_installation.html).
+for select systems are provided below. For 
+other systems follow the instructions of the 
+official documentation linked 
+[here](https://restic.readthedocs.io/en/stable/020_installation.html).
 
 ### Arch Linux
 ```sh
