@@ -35,7 +35,7 @@ export RESTIC_PASSWORD="<password>"
 
 exec restic "$@"
 ```
-Change the repository and the password accordingly.
+Change `<repository>` and `<password>` accordingly.
 
 Change the permissions of the file:
 ```sh
@@ -48,11 +48,14 @@ chown root /usr/local/bin/restic-offsite
 ```
 
 ## Create a backup service
-Download the systemd unit file:
-```sh
-curl -o /etc/systemd/user/restic-backup.service "https://raw.githubusercontent.com/notfirefox/backup-tools/rewrite/etc/systemd/user/restic-backup.service" 
+Put the following into `/etc/systemd/user/restic-backup.service`:
 ```
+[Unit]
+Description=Restic Backup Service
 
-Download the systemd timer file:
-```sh
-curl -o /etc/systemd/user/restic-backup.timer "https://github.com/notfirefox/backup-tools/raw/rewrite/etc/systemd/user/restic-backup.timer" ```
+[Service]
+Type=oneshot
+ExecStart=restic-offsite backup "/home/<user>" --exclude "/home/<user>/"'/.*' --verbose
+ExecStartPost=restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+```
+Change `<user>` accordingly.
