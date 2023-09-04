@@ -48,6 +48,10 @@ chown root /usr/local/bin/restic-offsite
 ```
 
 ## Create a backup service
+Now we want to create a systemd system service
+to automate the backup process. Documentation
+on writing unit files can be found
+[here](https://wiki.archlinux.org/title/Systemd#Writing_unit_files).
 
 ### Service
 Put the following into `/etc/systemd/user/restic-backup.service`:
