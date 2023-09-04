@@ -2,7 +2,7 @@
 
 ## Install restic
 
-## Arch Linux
+### Arch Linux
 ```sh
 sudo pacman -S restic
 ```
