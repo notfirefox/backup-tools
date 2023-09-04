@@ -1,0 +1,6 @@
+[Unit]
+Description=Restic Prune service
+
+[Service]
+Type=oneshot
+ExecStart=restic-offsite prune
