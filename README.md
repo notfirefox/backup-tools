@@ -82,6 +82,11 @@ Persistent=true
 WantedBy=timers.target
 ```
 
+Enable the service:
+```
+systemctl enable --now restic-backup.timer
+```
+
 ## Create a prune service
 In order to clean up ununsed data in the restic repository
 we need a separate system service that runs less regularly.
@@ -111,4 +116,9 @@ Persistent=true
 
 [Install]
 WantedBy=timers.target
+```
+
+Enable the service:
+```
+systemctl enable --now restic-prune.timer
 ```
