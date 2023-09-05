@@ -58,6 +58,8 @@ Put the following into `/etc/systemd/user/restic-backup.service`:
 ```
 [Unit]
 Description=Restic Backup Service
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
@@ -102,8 +104,6 @@ Put the following into `/etc/systemd/system/restic-prune.timer`:
 ```
 [Unit]
 Description=Weekly Restic Cleanup
-After=network-online.target
-Wants=network-online.target
 
 [Timer]
 OnCalendar=weekly
