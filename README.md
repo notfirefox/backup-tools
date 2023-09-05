@@ -89,6 +89,8 @@ Put the following into `/etc/systemd/user/restic-prune.service`:
 ```
 [Unit]
 Description=Restic Prune service
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
@@ -100,6 +102,8 @@ Put the following into `/etc/systemd/system/restic-prune.timer`:
 ```
 [Unit]
 Description=Weekly Restic Cleanup
+After=network-online.target
+Wants=network-online.target
 
 [Timer]
 OnCalendar=weekly
