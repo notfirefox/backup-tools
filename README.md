@@ -83,7 +83,7 @@ WantedBy=timers.target
 ```
 
 Enable the service:
-```
+```sh
 systemctl enable --now restic-backup.timer
 ```
 
@@ -119,6 +119,6 @@ WantedBy=timers.target
 ```
 
 Enable the service:
-```
+```sh
 systemctl enable --now restic-prune.timer
 ```
