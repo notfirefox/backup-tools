@@ -5,4 +5,4 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=restic-offsite prune
+ExecStart=/usr/local/bin/restic-offsite prune
