@@ -63,8 +63,8 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
-ExecStartPost=restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+ExecStart=/usr/local/bin/restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
+ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
 ```
 Change `<user>` accordingly.
 
@@ -101,7 +101,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=restic-offsite prune
+ExecStart=/usr/local/bin/restic-offsite prune
 ```
 
 ### Timer
