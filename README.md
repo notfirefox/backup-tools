@@ -1,5 +1,5 @@
-# Backup Tools
-Backup Tools is a system providing
+# Offsite Backup
+Offsite Backup is a system providing
 encrypted backups using [restic](https://restic.net/).
 
 ## Install restic
