@@ -58,11 +58,12 @@ Put the following into `/etc/systemd/user/restic-backup.service`:
 ```
 [Unit]
 Description=Restic Backup Service
-After=network-online.target
+After=network-online.target nss-lookup.target
 Wants=network-online.target
 
 [Service]
 Type=oneshot
+# ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
 ExecStart=/usr/local/bin/restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
 ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
 ```
@@ -96,11 +97,12 @@ Put the following into `/etc/systemd/user/restic-prune.service`:
 ```
 [Unit]
 Description=Restic Prune service
-After=network-online.target
+After=network-online.target nss-lookup.target
 Wants=network-online.target
 
 [Service]
 Type=oneshot
+# ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
 ExecStart=/usr/local/bin/restic-offsite prune
 ```
 
