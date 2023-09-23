@@ -54,7 +54,7 @@ on writing unit files can be found
 [here](https://wiki.archlinux.org/title/Systemd#Writing_unit_files).
 
 ### Service
-Put the following into `/etc/systemd/user/restic-backup.service`:
+Put the following into `/etc/systemd/system/restic-backup.service`:
 ```
 [Unit]
 Description=Restic Backup Service
