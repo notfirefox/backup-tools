@@ -94,7 +94,7 @@ In order to clean up ununsed data in the restic repository
 we need a separate system service that runs less regularly.
 
 ### Service
-Put the following into `/etc/systemd/user/restic-prune.service`:
+Put the following into `/etc/systemd/system/restic-prune.service`:
 ```
 [Unit]
 Description=Restic Prune service
