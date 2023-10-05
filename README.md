@@ -3,12 +3,9 @@ Offsite Backup is a system providing
 encrypted backups using [restic](https://restic.net/).
 
 ## Install restic
-Install `restic` on your system. Instructions
-for Fedora are provided below. For 
-other systems follow the instructions of the 
-official documentation linked 
+Instructions on installing restic can be found
 [here](https://restic.readthedocs.io/en/stable/020_installation.html).
-
+The command for Fedora is provided below.
 ```sh
 dnf install restic
 ```
