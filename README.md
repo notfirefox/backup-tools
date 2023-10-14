@@ -10,6 +10,12 @@ The command for Fedora is provided below.
 dnf install restic
 ```
 
+## Create restic user
+Create a dedicated restic user.
+```sh
+useradd --system --create-home --shell /sbin/nologin restic
+```
+
 ## Create a proxy script
 Create a file called `/usr/local/bin/restic-offsite` and 
 put the following into it:
@@ -30,7 +36,7 @@ chmod 700 /usr/local/bin/restic-offsite
 
 Change the ownership of the file:
 ```sh
-chown root /usr/local/bin/restic-offsite
+chown root:restic /usr/local/bin/restic-offsite
 ```
 
 ## Create a backup service
@@ -49,9 +55,11 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+User=restic
 ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
 ExecStart=/usr/local/bin/restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
 ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+AmbientCapabilities=CAP_DAC_READ_SEARCH
 ```
 Change `<user>` accordingly. If your offsite backup depends on a specific
 host change `example.com` as well to that specific host.
