@@ -97,6 +97,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+User=restic
 ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
 ExecStart=/usr/local/bin/restic-offsite prune
 ```
