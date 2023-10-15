@@ -31,7 +31,7 @@ Change `<repository>` and `<password>` accordingly.
 
 Change the permissions of the file:
 ```sh
-chmod 700 /usr/local/bin/restic-offsite
+chmod 750 /usr/local/bin/restic-offsite
 ```
 
 Change the ownership of the file:
