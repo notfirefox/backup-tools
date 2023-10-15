@@ -57,7 +57,7 @@ Wants=network-online.target
 Type=oneshot
 User=restic
 ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
-ExecStart=/usr/local/bin/restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
+ExecStart=/usr/local/bin/restic-offsite backup '/home/<user>' --exclude '/home/*/.*' --verbose
 ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
 AmbientCapabilities=CAP_DAC_READ_SEARCH
 ```
