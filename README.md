@@ -82,7 +82,7 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-Enable the service:
+Enable the timer:
 ```sh
 systemctl enable --now restic-backup.timer
 ```
@@ -119,7 +119,7 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-Enable the service:
+Enable the timer:
 ```sh
 systemctl enable --now restic-prune.timer
 ```
