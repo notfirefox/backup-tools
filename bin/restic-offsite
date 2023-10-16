@@ -3,4 +3,9 @@
 export RESTIC_REPOSITORY="<repository>"
 export RESTIC_PASSWORD="<password>"
 
+until host 'example.com'
+do
+    sleep 1
+done
+
 exec restic "$@"
