@@ -10,6 +10,12 @@ The command for Fedora is provided below.
 dnf install restic
 ```
 
+## Create restic user
+Create a dedicated restic user.
+```sh
+useradd --system --create-home --shell /sbin/nologin restic
+```
+
 ## Create a proxy script
 Create a file called `/usr/local/bin/restic-offsite` and 
 put the following into it:
@@ -19,18 +25,25 @@ put the following into it:
 export RESTIC_REPOSITORY="<repository>"
 export RESTIC_PASSWORD="<password>"
 
+until host 'example.com'
+do
+    sleep 1
+done
+
 exec restic "$@"
 ```
 Change `<repository>` and `<password>` accordingly.
+If your offsite backup depends on a specific host
+change `example.com` as well to that specific host.
 
 Change the permissions of the file:
 ```sh
-chmod 700 /usr/local/bin/restic-offsite
+chmod 750 /usr/local/bin/restic-offsite
 ```
 
 Change the ownership of the file:
 ```sh
-chown root /usr/local/bin/restic-offsite
+chown root:restic /usr/local/bin/restic-offsite
 ```
 
 ## Create a backup service
@@ -49,12 +62,12 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
-ExecStart=/usr/local/bin/restic-offsite backup "/home/<user>" --exclude '/home/<user>/.*' --verbose
-ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+User=restic
+ExecStart=restic-offsite backup '/home/<user>' --exclude '/home/*/.*' --verbose
+ExecStartPost=restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+AmbientCapabilities=CAP_DAC_READ_SEARCH
 ```
-Change `<user>` accordingly. If your offsite backup depends on a specific
-host change `example.com` as well to that specific host.
+Change `<user>` accordingly.
 
 ### Timer
 Put the following into `/etc/systemd/system/restic-backup.timer`:
@@ -70,7 +83,7 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-Enable the service:
+Enable the timer:
 ```sh
 systemctl enable --now restic-backup.timer
 ```
@@ -89,10 +102,9 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStartPre=/bin/sh -c 'until host example.com; do sleep 1; done'
-ExecStart=/usr/local/bin/restic-offsite prune
+User=restic
+ExecStart=restic-offsite prune
 ```
-Change `example.com` as before.
 
 ### Timer
 Put the following into `/etc/systemd/system/restic-prune.timer`:
@@ -108,7 +120,7 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-Enable the service:
+Enable the timer:
 ```sh
 systemctl enable --now restic-prune.timer
 ```
