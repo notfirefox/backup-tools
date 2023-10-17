@@ -63,8 +63,8 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 User=restic
-ExecStart=/usr/local/bin/restic-offsite backup '/home/<user>' --exclude '/home/*/.*' --verbose
-ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
+ExecStart=restic-offsite backup '/home/<user>' --exclude '/home/*/.*' --verbose
+ExecStartPost=restic-offsite forget --keep-within-daily 7d --keep-within-weekly 1m --keep-within-monthly 1y --keep-within-yearly 10y --verbose
 AmbientCapabilities=CAP_DAC_READ_SEARCH
 ```
 Change `<user>` accordingly.
@@ -103,7 +103,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 User=restic
-ExecStart=/usr/local/bin/restic-offsite prune
+ExecStart=restic-offsite prune
 ```
 
 ### Timer
