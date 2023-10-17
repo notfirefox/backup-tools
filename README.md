@@ -68,6 +68,7 @@ ExecStartPost=/usr/local/bin/restic-offsite forget --keep-within-daily 7d --keep
 AmbientCapabilities=CAP_DAC_READ_SEARCH
 ```
 Change `<user>` accordingly.
+
 ### Timer
 Put the following into `/etc/systemd/system/restic-backup.timer`:
 ```
