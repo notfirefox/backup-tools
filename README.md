@@ -85,7 +85,7 @@ WantedBy=timers.target
 
 Enable the timer:
 ```sh
-systemctl enable --now restic-backup.timer
+systemctl enable restic-backup.timer
 ```
 
 ## Create a prune service
@@ -122,5 +122,5 @@ WantedBy=timers.target
 
 Enable the timer:
 ```sh
-systemctl enable --now restic-prune.timer
+systemctl enable restic-prune.timer
 ```
