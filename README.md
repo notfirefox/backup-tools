@@ -30,7 +30,7 @@ do
     sleep 1
 done
 
-exec systemd-inhibit restic "$@"
+exec systemd-inhibit --what=idle restic "$@"
 ```
 Change `<repository>` and `<password>` accordingly.
 If your offsite backup depends on a specific host
