@@ -3,7 +3,7 @@
 export RESTIC_REPOSITORY="<repository>"
 export RESTIC_PASSWORD="<password>"
 
-until host 'example.com'
+until host '<url>'
 do
     sleep 1
 done
