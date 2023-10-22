@@ -8,4 +8,4 @@ do
     sleep 1
 done
 
-exec systemd-inhibit restic "$@"
+exec systemd-inhibit --what=idle restic "$@"
