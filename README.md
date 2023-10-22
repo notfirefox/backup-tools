@@ -22,8 +22,8 @@ put the following into it:
 ```sh
 #!/bin/sh
 
-export RESTIC_REPOSITORY="<repository>"
-export RESTIC_PASSWORD="<password>"
+export RESTIC_REPOSITORY='<repository>'
+export RESTIC_PASSWORD='<password>'
 
 until host '<url>'
 do
