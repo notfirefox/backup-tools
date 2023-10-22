@@ -25,7 +25,7 @@ put the following into it:
 export RESTIC_REPOSITORY="<repository>"
 export RESTIC_PASSWORD="<password>"
 
-until host 'example.com'
+until host '<url>'
 do
     sleep 1
 done
@@ -33,8 +33,9 @@ done
 exec systemd-inhibit --what=idle restic "$@"
 ```
 Change `<repository>` and `<password>` accordingly.
-If your offsite backup depends on a specific host
-change `example.com` as well to that specific host.
+Assuming that your offsite backup depends on a specific
+host, also change `<url>`. Otherwise you can remove the 
+loop altogether.
 
 Change the permissions of the file:
 ```sh
