@@ -34,7 +34,6 @@ Persistent=true
 WantedBy=timers.target
 EOL
 
-
 echo "Creating restic-prune.service file"
 cat > "$UNIT_FOLDER/restic-prune.service" <<EOL
 [Unit]
