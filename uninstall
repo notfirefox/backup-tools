@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo "Disabling restic-backup timer"
+systemctl disable --user restic-backup.timer
+
+echo "Disabling restic-prune timer"
+systemctl disable --user restic-prune.timer
+
+UNIT_FOLDER="$HOME/.config/systemd/user"
+
+echo "Deleting restic-backup service and timer file"
+rm -f "$UNIT_FOLDER/restic-backup.service"
+rm -f "$UNIT_FOLDER/restic-backup.timer"
+
+echo "Deleting restic-prune service and timer file"
+rm -f "$UNIT_FOLDER/restic-prune.service"
+rm -f "$UNIT_FOLDER/restic-prune.timer"
+
+echo "Done!"
