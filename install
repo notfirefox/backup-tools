@@ -1,0 +1,69 @@
+#!/bin/sh
+
+UNIT_FOLDER="$HOME/.config/systemd/user"
+mkdir -p "$UNIT_FOLDER"
+
+echo "Creating restic-backup.service file"
+cat > "$UNIT_FOLDER/restic-backup.service" <<EOL
+[Unit]
+Description=Restic Backup Service
+After=network-online.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=restic backup %h \\
+    --exclude %h/.*
+ExecStartPost=restic forget \\
+    --keep-within-daily 7d \\
+    --keep-within-weekly 1m \\
+    --keep-within-monthly 1y \\
+    --keep-within-yearly 10y
+EOL
+
+echo "Creating restic-backup.timer file"
+cat > "$UNIT_FOLDER/restic-backup.timer" <<EOL
+[Unit]
+Description=Daily Restic Backups
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOL
+
+
+echo "Creating restic-prune.service file"
+cat > "$UNIT_FOLDER/restic-prune.service" <<EOL
+[Unit]
+Description=Restic Prune service
+After=network-online.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=restic prune
+EOL
+
+echo "Creating restic-prune.timer file"
+cat > "$UNIT_FOLDER/restic-prune.timer" <<EOL
+[Unit]
+Description=Weekly Restic Cleanup
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOL
+
+echo "Enabling restic-backup timer"
+systemctl enable --user restic-backup.timer
+
+echo "Enabling restic-prune timer"
+systemctl enable --user restic-prune.timer
+
+echo "Done!"
