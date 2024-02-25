@@ -12,6 +12,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sh -c 'until host google.com; do sleep 1; done'
 ExecStart=restic backup %h \\
     --exclude %h/.*
 ExecStartPost=restic forget \\
@@ -43,6 +44,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sh -c 'until host google.com; do sleep 1; done'
 ExecStart=restic prune
 EOL
 
