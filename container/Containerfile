@@ -1,0 +1,24 @@
+FROM docker.io/library/alpine:latest
+
+LABEL com.github.containers.toolbox="true" \
+      name="alpine-toolbox" \
+      version="latest" \
+      usage="This image is meant to be used with the toolbox command" \
+      summary="Base image for creating Alpine Linux toolbox containers" \
+      maintainer="notfirefox <138280734+notfirefox@users.noreply.github.com>"
+
+# Install extra packages
+COPY extra-packages /
+RUN apk update && \
+    apk upgrade && \
+    cat /extra-packages | xargs apk add
+RUN rm /extra-packages
+
+# Enable passwordless doas
+RUN echo "permit nopass :wheel" > /etc/doas.d/toolbox.conf
+
+# Copy the os-release file
+RUN cp -p /etc/os-release /usr/lib/os-release
+
+# Clear out /media
+RUN rm -rf /media
