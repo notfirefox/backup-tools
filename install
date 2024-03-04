@@ -14,8 +14,10 @@ Wants=network-online.target
 Type=oneshot
 ExecStartPre=/bin/sh -c 'until host google.com; do sleep 1; done'
 ExecStart=restic backup %h \\
+    --retry-lock=1h \\
     --exclude %h/.*
 ExecStartPost=restic forget \\
+    --retry-lock=1h \\
     --keep-within-daily 7d \\
     --keep-within-weekly 1m \\
     --keep-within-monthly 1y \\
@@ -45,7 +47,8 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 ExecStartPre=/bin/sh -c 'until host google.com; do sleep 1; done'
-ExecStart=restic prune
+ExecStart=restic prune \\
+    --retry-lock=1h
 EOL
 
 echo "Creating restic-prune.timer file"
