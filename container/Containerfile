@@ -15,7 +15,7 @@ RUN apk update && \
 RUN rm /extra-packages
 
 # Enable passwordless doas
-RUN echo "permit nopass :wheel" > /etc/doas.d/toolbox.conf
+# RUN echo "permit nopass :wheel" > /etc/doas.d/toolbox.conf
 
 # Copy the os-release file
 RUN cp -p /etc/os-release /usr/lib/os-release
