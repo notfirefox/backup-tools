@@ -31,6 +31,7 @@ Description=Daily Restic Backups
 
 [Timer]
 OnCalendar=daily
+RandomizedDelaySec=10m
 Persistent=true
 
 [Install]
@@ -58,6 +59,7 @@ Description=Weekly Restic Cleanup
 
 [Timer]
 OnCalendar=weekly
+RandomizedDelaySec=10m
 Persistent=true
 
 [Install]
